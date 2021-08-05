@@ -15,11 +15,18 @@ class CostoClavos{
         float getCosto()const;
         float getImpuesto()const;
         std::string getTienda()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoClavos &c);
         ~CostoClavos();
 };
+std::ostream& operator<<(std::ostream &o, const CostoClavos &c){
+    o << "Costo Clavos: " << c.getCosto() << "\n";
+    o << "Tienda Clavos: " << c.getTienda() << "\n";
+    o << "Impuestos Clavos: " << c.getImpuesto() << "\n";
+    return o;
+}
 CostoClavos::CostoClavos(){
-    costo=0;
-    tienda="No definida";
+    std::cout<<"Ingrese costo de clavos: "; std::cin>>costo;
+    std::cout<<"Ingrese nombre de tienda: "; std::cin>>tienda;
     impuesto=0.18*costo;
 }
 CostoClavos::CostoClavos(float costo, std::string tienda){

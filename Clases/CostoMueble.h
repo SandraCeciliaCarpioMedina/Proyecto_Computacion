@@ -21,14 +21,23 @@ class CostoMueble{
         std::string getMarca()const;
         std::string getTienda()const;
         std::string getNombre()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoMueble &m);
         ~CostoMueble();
 };
+std::ostream& operator<<(std::ostream &o, const CostoMueble &m){
+    o << "Costo de Mueble: " <<m.getCosto() << "\n";
+    o << "Marca de Mueble: " <<m.getCosto() << "\n";
+    o << "Tienda: " <<m.getCosto() << "\n";
+    o << "Impuesto de Mueble: " <<m.getCosto() << "\n";
+    o << "Nombre de Mueble: " <<m.getCosto() << "\n";
+    return o;
+}
 CostoMueble::CostoMueble(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese costo de mueble: "; std::cin>>costo;
+    std::cout<<"Ingrese marca de mueble: "; std::cin>>marca;
+    std::cout<<"Ingrese tienda: "; std::cin>>tienda;
+    std::cout<<"Ingrese nombre de mueble: "; std::cin>>nombre;
     impuesto=0.18*costo;
-    nombre="No definido";
 }
 CostoMueble::CostoMueble(float costo, std::string marca, std::string tienda, std::string nombre){
     this->costo=costo;

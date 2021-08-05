@@ -21,14 +21,23 @@ class CostoHerramientas{
         std::string getMarca()const;
         std::string getTienda()const;
         std::string getNombre()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoHerramientas &h);
         ~CostoHerramientas();
 };
+std::ostream& operator<<(std::ostream &o, const CostoHerramientas &h){
+    o << "Costo de herramienta: " << h.getCosto() << "\n";
+    o << "Marca de herramienta: " << h.getMarca() << "\n";
+    o << "Tienda de herramienta: " << h.getTienda() << "\n";
+    o << "Impuesto de herramienta: " << h.getImpuesto() << "\n";
+    o << "Nombre de herramienta: " << h.getNombre() << "\n";
+    return o;
+}
 CostoHerramientas::CostoHerramientas(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese costo de herramienta: "; std::cin>>costo;
+    std::cout<<"Ingrese marca de herramienta: "; std::cin>>marca;
+    std::cout<<"Ingrese tienda: "; std::cin>>tienda;
+    std::cout<<"Ingrese Nombre de herramienta: "; std::cin>>nombre;
     impuesto=0.18*costo;
-    nombre="No definido";
 }
 CostoHerramientas::CostoHerramientas(float costo, std::string marca, std::string tienda, std::string nombre){
     this->costo=costo;

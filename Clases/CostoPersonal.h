@@ -2,20 +2,32 @@
 #define _COSTOPERSONAL_H_
 #include <iostream>
 #include "Persona.h"
+#include "Lista.h"
 class CostoPersonal{
     private:
-        Persona* persona;
         float costo;
+        Lista<Persona> personal;
     public:
         CostoPersonal();
         CostoPersonal(Persona);
         void setCosto(float);
         float getCosto()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoPersonal &p);
         ~CostoPersonal();
 };
+std::ostream& operator<<(std::ostream &o, const CostoPersonal &p){
+    o << "Costo Total de Personal: "<< p.getCosto() << "\n";
+    o << "Personal Contratado:\n";
+    o << p.personal << "\n";
+    return o;
+}
 CostoPersonal::CostoPersonal(){
-    costo=0;
-    persona=nullptr;
+    costo = 0;
+    Nodo<Persona>* ptr = personal.getCabeza();
+    while(ptr->getSiguiente() != nullptr){
+        costo += ptr->getElemento().getSueldo();
+        ptr = ptr->getSiguiente();
+    }
 }
 CostoPersonal::CostoPersonal(Persona p){
     costo=p.getSueldo();

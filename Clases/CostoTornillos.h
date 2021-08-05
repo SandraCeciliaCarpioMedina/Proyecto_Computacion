@@ -15,11 +15,18 @@ class CostoTornillos{
         float getCosto()const;
         float getImpuesto()const;
         std::string getTienda()const;
+        friend std::ostream& operator<<(std::ostream &o,const CostoTornillos &t);
         ~CostoTornillos();
 };
+std::ostream& operator<<(std::ostream &o,const CostoTornillos &t){
+    o << "Costo Tornillos: " << t.getCosto() << "\n";
+    o << "Tienda Tornillos: " << t.getTienda() << "\n";
+    o << "Impuesto Tornillos: " << t.getImpuesto() << "\n";
+    return o;
+}
 CostoTornillos::CostoTornillos(){
-    costo=0;
-    tienda="No definida";
+    std::cout<<"Ingrese costo de tornillos: "; std::cin>>costo;
+    std::cout<<"Ingrese nombre de tienda "; std::cin>>tienda;
     impuesto=0.18*costo;
 }
 CostoTornillos::CostoTornillos(float costo, std::string tienda){

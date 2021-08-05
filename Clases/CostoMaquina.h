@@ -21,14 +21,23 @@ class CostoMaquina{
         std::string getMarca()const;
         std::string getTienda()const;
         std::string getNombre()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoMaquina &m);
         ~CostoMaquina();
 };
+std::ostream& operator<<(std::ostream &o, const CostoMaquina &m){
+    o << "Costo Maquina: " << m.getCosto() << "\n";
+    o << "Marca Maquina: " << m.getMarca() << "\n";
+    o << "Tienda Maquina: " << m.getTienda() << "\n";
+    o << "Impuesto Maquina: " << m.getImpuesto() << "\n";
+    o << "Nombre Maquina: " << m.getNombre() << "\n";
+    return o;
+}
 CostoMaquina::CostoMaquina(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese Costo de la maquina: "; std::cin>>costo;
+    std::cout<<"Ingrese marca de la maquina: "; std::cin>>marca;
+    std::cout<<"Ingrese tienda: "; std::cin>>tienda;
+    std::cout<<"Ingrese Nombre de la maquina: "; std::cin>>nombre;
     impuesto=0.18*costo;
-    nombre="No definido";
 }
 CostoMaquina::CostoMaquina(float costo, std::string marca, std::string tienda, std::string nombre){
     this->costo=costo;

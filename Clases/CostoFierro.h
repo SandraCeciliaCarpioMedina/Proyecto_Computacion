@@ -18,12 +18,20 @@ class CostoFierro{
         float getImpuesto()const;
         std::string getMarca()const;
         std::string getTienda()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoFierro &f);
         ~CostoFierro();
 };
+std::ostream& operator<<(std::ostream &o, const CostoFierro &f){
+    o << "Costo Fierro: " << f.getCosto() << "\n";
+    o << "Marca Fierro: " << f.getMarca() << "\n";
+    o << "Tienda Fierro: " << f.getTienda() << "\n";
+    o << "Impuesto Fierro: " << f.getImpuesto() << "\n";
+    return o;
+}
 CostoFierro::CostoFierro(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese costo de los fierros: "; std::cin>>costo;
+    std::cout<<"Ingrese marca de los fierros: "; std::cin>>marca;
+    std::cout<<"Ingrese nombre de la tienda: "; std::cin>>tienda;
     impuesto=0.18*costo;
 }
 CostoFierro::CostoFierro(float costo, std::string marca, std::string tienda){

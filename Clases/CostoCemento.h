@@ -18,12 +18,20 @@ class CostoCemento{
         float getImpuesto()const;
         std::string getMarca()const;
         std::string getTienda()const;
+        friend std::ostream& operator<<(std::ostream &o, const CostoCemento &c);
         ~CostoCemento();
 };
+std::ostream& operator<<(std::ostream &o, const CostoCemento &c){
+    o << "Costo Cemento: " << c.getCosto() << "\n";
+    o << "Marca Cemento: " << c.getMarca() << "\n";
+    o << "Tienda Cemento: " << c.getTienda() << "\n";
+    o << "Impuesto Cemento: " << c.getImpuesto() << "\n";
+    return o;
+}
 CostoCemento::CostoCemento(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese Costo Cemento: "; std::cin>>costo;
+    std::cout<<"Ingrese marca de Cemento: "; std::cin>>marca;
+    std::cout<<"Ingrese nombre de tienda donde se compro el cemento: "; std::cin>>tienda;
     impuesto=0.05*costo;
 }
 CostoCemento::CostoCemento(float costo, std::string marca, std::string tienda){

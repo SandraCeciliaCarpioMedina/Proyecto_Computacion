@@ -18,12 +18,19 @@ class CostoLadrillos{
         float getImpuesto()const;
         std::string getMarca()const;
         std::string getTienda()const;
+        friend std::ostream& operator<<(std::ostream &o, CostoLadrillos l);
         ~CostoLadrillos();
 };
+std::ostream& operator<<(std::ostream &o, CostoLadrillos l){
+    o << "Costo Ladrillos: " << l.getCosto() << "\n";
+    o << "Marca Ladrillos: " << l.getMarca() << "\n";
+    o << "Tienda Ladrillos: " << l.getTienda() << "\n";
+    o << "Impuesto Ladrillos: " << l.getImpuesto() << "\n";
+    return o;
+}
 CostoLadrillos::CostoLadrillos(){
-    costo=0;
-    marca="No definida";
-    tienda="No definida";
+    std::cout<<"Ingrese costo de ladrillos: "; std::cin>>costo;
+    std::cout<<"Ingrese nombre de tienda: "; std::cin>>tienda;
     impuesto=0.19*costo;
 }
 CostoLadrillos::CostoLadrillos(float costo, std::string marca, std::string tienda){

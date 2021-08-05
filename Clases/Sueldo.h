@@ -24,9 +24,16 @@ class Sueldo{
         ~Sueldo();
 };
 Sueldo::Sueldo(){
-    sueldo=0;
-    ocupacion="No especificada";
-    civil=true;
+    int opc;
+    std::cout<<"Ingrese sueldo: "; std::cin>>sueldo;
+    std::cout<<"Ingrese ocupacion: "; std::cin>>ocupacion;
+    std::cout<<"Si trabaja para el gobierno ingrese 0, caso contrario ingrese cualquier otro numero: ";
+    std::cin>>opc;
+    if(opc == 0){
+        civil = false;
+    } else{
+        civil = true;
+    }
 }
 Sueldo::Sueldo(float sueldo, std::string ocupacion, bool civil){
     this->sueldo = sueldo;

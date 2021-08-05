@@ -33,11 +33,11 @@ class Persona{
         ~Persona();
 };
 Persona::Persona(){
-    nacionalidad = "Sin definir";
-    nombre = "Sin nombre";
-    apellido = "Sin apellido";
-    edad = 0;
-    dni = 0;
+    std::cout<<"Ingrese nacionalidad: "; std::cin>>nacionalidad;
+    std::cout<<"Ingrese nombre: "; std::cin>>nombre;
+    std::cout<<"Ingrese apellido: "; std::cin>>apellido;
+    std::cout<<"Ingrese edad: "; std::cin>>edad;
+    std::cout<<"Ingrese dni: "; std::cin>>dni;
 }
 Persona::Persona(std::string nacionalidad, std::string nombre, std::string apellido, int edad, int dni){
     this->nacionalidad = nacionalidad;
