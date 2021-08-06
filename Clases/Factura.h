@@ -7,17 +7,17 @@ class Factura{
         float impuesto;
     public:
         Factura();
-        Factura(float);
+        Factura(float&&);
         float getPrecio()const;
         float getImpuesto()const;
-        void setPrecio(float);
+        void setPrecio(float&&);
         ~Factura();
 };
 Factura::Factura(){
     std::cout<<"Ingrese precio de factura: "; std::cin>>precio;
     impuesto = 0.18*precio;
 }
-Factura::Factura(float precio){
+Factura::Factura(float &&precio){
     this->precio = precio;
     impuesto = 0.18*precio;
 }
@@ -27,7 +27,7 @@ float Factura::getPrecio()const{
 float Factura::getImpuesto()const{
     return impuesto;
 }
-void Factura::setPrecio(float precio){
+void Factura::setPrecio(float &&precio){
     this->precio = precio;
     impuesto = 0.18*precio;
 }

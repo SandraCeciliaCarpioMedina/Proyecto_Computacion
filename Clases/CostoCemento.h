@@ -9,11 +9,11 @@ class CostoCemento{
         float impuesto;
     public:
         CostoCemento();
-        CostoCemento(float,std::string,std::string);
-        void setCosto(float);
-        void setImpuesto(float);
-        void setMarca(std::string);
-        void setTienda(std::string);
+        CostoCemento(float&&,std::string&&,std::string&&);
+        void setCosto(float&&);
+        void setImpuesto(float&&);
+        void setMarca(std::string&&);
+        void setTienda(std::string&&);
         float getCosto()const;
         float getImpuesto()const;
         std::string getMarca()const;
@@ -34,22 +34,22 @@ CostoCemento::CostoCemento(){
     std::cout<<"Ingrese nombre de tienda donde se compro el cemento: "; std::cin>>tienda;
     impuesto=0.05*costo;
 }
-CostoCemento::CostoCemento(float costo, std::string marca, std::string tienda){
+CostoCemento::CostoCemento(float &&costo, std::string &&marca, std::string &&tienda){
     this->costo=costo;
     this->marca=marca;
     this->tienda=tienda;
     impuesto=0.05*costo;
 }
-void CostoCemento::setCosto(float costo){
+void CostoCemento::setCosto(float &&costo){
     this->costo = costo;
 }
-void CostoCemento::setImpuesto(float impuesto){
+void CostoCemento::setImpuesto(float &&impuesto){
     this->impuesto = impuesto;
 }
-void CostoCemento::setMarca(std::string marca){
+void CostoCemento::setMarca(std::string &&marca){
     this->marca=marca;
 }
-void CostoCemento::setTienda(std::string tienda){
+void CostoCemento::setTienda(std::string &&tienda){
     this->tienda = tienda;
 }
 float CostoCemento::getCosto()const{

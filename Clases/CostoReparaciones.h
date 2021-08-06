@@ -8,10 +8,10 @@ class CostoReparaciones{
         float impuesto;
     public:
         CostoReparaciones();
-        CostoReparaciones(float,std::string);
-        void setCosto(float);
-        void setImpuesto(float);
-        void setNombre(std::string);
+        CostoReparaciones(float&&,std::string&&);
+        void setCosto(float&&);
+        void setImpuesto(float&&);
+        void setNombre(std::string&&);
         float getCosto()const;
         float getImpuesto()const;
         std::string getNombre()const;
@@ -29,18 +29,18 @@ CostoReparaciones::CostoReparaciones(){
     std::cout<<"Ingrese nombre de reparacion: "; std::cin>>nombre;
     impuesto=0.18*costo;
 }
-CostoReparaciones::CostoReparaciones(float costo, std::string nombre){
+CostoReparaciones::CostoReparaciones(float &&costo, std::string &&nombre){
     this->costo=costo;
     this->nombre=nombre;
     impuesto=0.18*costo;
 }
-void CostoReparaciones::setCosto(float costo){
+void CostoReparaciones::setCosto(float &&costo){
     this->costo = costo;
 }
-void CostoReparaciones::setImpuesto(float impuesto){
+void CostoReparaciones::setImpuesto(float &&impuesto){
     this->impuesto = impuesto;
 }
-void CostoReparaciones::setNombre(std::string nombre){
+void CostoReparaciones::setNombre(std::string &&nombre){
     this->nombre = nombre;
 }
 float CostoReparaciones::getCosto()const{

@@ -9,8 +9,8 @@ class CostoPersonal{
         Lista<Sueldo> personal;
     public:
         CostoPersonal();
-        CostoPersonal(Lista<Sueldo>);
-        void setCosto(float);
+        CostoPersonal(Lista<Sueldo>&&);
+        void setCosto(float&&);
         float getCosto()const;
         Lista<Sueldo> getPersonal()const;
         friend std::ostream& operator<<(std::ostream &o, const CostoPersonal &p);
@@ -33,7 +33,7 @@ CostoPersonal::CostoPersonal(){
     }
     costo += ptr->getElemento().getSueldo();
 }
-CostoPersonal::CostoPersonal(Lista<Sueldo> p){
+CostoPersonal::CostoPersonal(Lista<Sueldo> &&p){
     personal = p;
     while (p.getCabeza()->getSiguiente() != nullptr){
         costo += p.getCabeza()->getElemento().getSueldo();
@@ -41,7 +41,7 @@ CostoPersonal::CostoPersonal(Lista<Sueldo> p){
     }
     costo += p.getCabeza()->getElemento().getSueldo();
 }
-void CostoPersonal::setCosto(float costo){
+void CostoPersonal::setCosto(float &&costo){
     this->costo = costo;
 }
 Lista<Sueldo> CostoPersonal::getPersonal()const{

@@ -8,10 +8,10 @@ class CostoPuertas{
         float impuesto;
     public:
         CostoPuertas();
-        CostoPuertas(float,std::string);
-        void setCosto(float);
-        void setImpuesto(float);
-        void setTienda(std::string);
+        CostoPuertas(float&&,std::string&&);
+        void setCosto(float&&);
+        void setImpuesto(float&&);
+        void setTienda(std::string&&);
         float getCosto()const;
         float getImpuesto()const;
         std::string getTienda()const;
@@ -29,18 +29,18 @@ CostoPuertas::CostoPuertas(){
     std::cout<<"Ingrese nombre de tienda: "; std::cin>>tienda;
     impuesto=0.18*costo;
 }
-CostoPuertas::CostoPuertas(float costo, std::string tienda){
+CostoPuertas::CostoPuertas(float &&costo, std::string &&tienda){
     this->costo=costo;
     this->tienda=tienda;
     impuesto=0.18*costo;
 }
-void CostoPuertas::setCosto(float costo){
+void CostoPuertas::setCosto(float &&costo){
     this->costo = costo;
 }
-void CostoPuertas::setImpuesto(float impuesto){
+void CostoPuertas::setImpuesto(float &&impuesto){
     this->impuesto = impuesto;
 }
-void CostoPuertas::setTienda(std::string tienda){
+void CostoPuertas::setTienda(std::string &&tienda){
     this->tienda = tienda;
 }
 float CostoPuertas::getCosto()const{

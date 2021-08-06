@@ -6,7 +6,7 @@ class Obra{
         std::string nombre;
     public:
         Obra();
-        Obra(std::string);
+        Obra(std::string&&);
         std::string getNombreObra()const;
         ~Obra();
 };
@@ -14,7 +14,7 @@ Obra::Obra(){
     std::cout<<"Nombre de Obra: ";
     std::cin>>nombre;
 }
-Obra::Obra(std::string nombre){
+Obra::Obra(std::string &&nombre){
     this->nombre = nombre;
 }
 std::string Obra::getNombreObra()const{

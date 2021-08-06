@@ -10,12 +10,12 @@ class CostoMaquina{
         std::string nombre;
     public:
         CostoMaquina();
-        CostoMaquina(float,std::string,std::string,std::string);
-        void setCosto(float);
-        void setImpuesto(float);
-        void setMarca(std::string);
-        void setTienda(std::string);
-        void setNombre(std::string);
+        CostoMaquina(float&&,std::string&&,std::string&&,std::string&&);
+        void setCosto(float&&);
+        void setImpuesto(float&&);
+        void setMarca(std::string&&);
+        void setTienda(std::string&&);
+        void setNombre(std::string&&);
         float getCosto()const;
         float getImpuesto()const;
         std::string getMarca()const;
@@ -39,26 +39,26 @@ CostoMaquina::CostoMaquina(){
     std::cout<<"Ingrese Nombre de la maquina: "; std::cin>>nombre;
     impuesto=0.18*costo;
 }
-CostoMaquina::CostoMaquina(float costo, std::string marca, std::string tienda, std::string nombre){
+CostoMaquina::CostoMaquina(float &&costo, std::string &&marca, std::string &&tienda, std::string &&nombre){
     this->costo=costo;
     this->nombre=nombre;
     this->marca=marca;
     this->tienda=tienda;
     impuesto=0.18*costo;
 }
-void CostoMaquina::setCosto(float costo){
+void CostoMaquina::setCosto(float &&costo){
     this->costo = costo;
 }
-void CostoMaquina::setImpuesto(float impuesto){
+void CostoMaquina::setImpuesto(float &&impuesto){
     this->impuesto = impuesto;
 }
-void CostoMaquina::setMarca(std::string marca){
+void CostoMaquina::setMarca(std::string &&marca){
     this->marca=marca;
 }
-void CostoMaquina::setTienda(std::string tienda){
+void CostoMaquina::setTienda(std::string &&tienda){
     this->tienda = tienda;
 }
-void CostoMaquina::setNombre(std::string nombre){
+void CostoMaquina::setNombre(std::string &&nombre){
     this->nombre = nombre;
 }
 float CostoMaquina::getCosto()const{

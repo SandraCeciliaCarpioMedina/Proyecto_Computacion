@@ -5,6 +5,7 @@
 #include "ObraConstruccion.h"
 #include "ObraEvento.h"
 #include "Lista.h"
+#include <list>
 #include "Factura.h"
 class Impuestos{
     private:
@@ -23,17 +24,20 @@ std::ostream& operator<<(std::ostream &o, const Impuestos &i){
 Impuestos::Impuestos(float &&impuestoEventos,float &&impuestoReparaciones,float &&impuestoConstrucciones){
     impuestoTotal = 0;
 
-    Lista<Factura> copiaFacturas = facturas;
-    Lista<Factura> *ptrF = &copiaFacturas;
-    while(ptrF->getCabeza()->getSiguiente() != nullptr){
-        impuestoTotal += ptrF->getCabeza()->getElemento().getImpuesto();
-        ptrF->getCabeza()->setSiguiente(ptrF->getCabeza()->getSiguiente());
+    Factura *f = new Factura(0);
+    Nodo<Factura> *ptrF = new Nodo<Factura>(std::move(f));
+    ptrF = facturas.getCabeza();
+    while(ptrF->getSiguiente() != nullptr){
+        impuestoTotal += ptrF->getElemento().getImpuesto();
+        ptrF->setSiguiente(ptrF->getSiguiente());
     }
-    impuestoTotal += ptrF->getCabeza()->getElemento().getImpuesto();
+    impuestoTotal += ptrF->getElemento().getImpuesto();
 
     impuestoTotal += impuestoEventos;
     impuestoTotal += impuestoConstrucciones;
     impuestoTotal += impuestoReparaciones;
+    delete f;
+    delete ptrF;
 }
 float Impuestos::getImpuestos()const{
     return impuestoTotal;

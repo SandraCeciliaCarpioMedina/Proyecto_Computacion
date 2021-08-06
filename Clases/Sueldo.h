@@ -9,10 +9,10 @@ class Sueldo : public Persona{
         bool civil;
     public:
         Sueldo();
-        Sueldo(std::string,std::string,std::string,int,int,float,std::string,bool);
-        void setSueldo(float);
-        void setOcupacion(std::string);
-        void setCivil(bool);
+        Sueldo(std::string&&,std::string&&,std::string&&,int&&,int&&,float&&,std::string&&,bool&&);
+        void setSueldo(float&&);
+        void setOcupacion(std::string&&);
+        void setCivil(bool&&);
         float getSueldo()const;
         std::string getOcupacion()const;
         bool getCivil()const;
@@ -53,18 +53,18 @@ Sueldo::Sueldo() : Persona(){
         civil = true;
     }
 }
-Sueldo::Sueldo(std::string nacionalidad, std::string nombre, std::string apellido, int edad, int dni, float sueldo, std::string ocupacion, bool civil) : Persona(nacionalidad, nombre, apellido, edad, dni){
+Sueldo::Sueldo(std::string &&nacionalidad, std::string &&nombre, std::string &&apellido, int &&edad, int &&dni, float &&sueldo, std::string &&ocupacion, bool &&civil) : Persona(std::move(nacionalidad), std::move(nombre), std::move(apellido), std::move(edad), std::move(dni)){
     this->sueldo = sueldo;
     this->ocupacion = ocupacion;
     this->civil = civil;
 }
-void Sueldo::setSueldo(float sueldo){
+void Sueldo::setSueldo(float &&sueldo){
     this->sueldo = sueldo;
 }
-void Sueldo::setOcupacion(std::string ocupacion){
+void Sueldo::setOcupacion(std::string &&ocupacion){
     this->ocupacion = ocupacion;
 }
-void Sueldo::setCivil(bool civil){
+void Sueldo::setCivil(bool &&civil){
     this->civil = civil;
 }
 float Sueldo::getSueldo()const{
