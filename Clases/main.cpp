@@ -21,10 +21,11 @@ int main(){
     cout << impuestos << endl;
     impR = impuestos.getImpuestos();
     impC = a.getCostoTotal() + b.getCostoTotal() + c.getCostoTotal();
+    cout << "El costo total generado de las obras del gobierno es: S/." << impC << endl;
     if (impR >= impC){
         cout << "El capital del gobierno es estable\n";
     } else{
-        cout<< "El capital del gobierno es insuficiente\n";
+        cout<< "El capital del gobierno es insuficiente, ALERTA DE CRISIS\n";
     }
     return 0;
 }
