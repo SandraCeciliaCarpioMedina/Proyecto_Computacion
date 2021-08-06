@@ -26,10 +26,10 @@ class CostoMueble{
 };
 std::ostream& operator<<(std::ostream &o, const CostoMueble &m){
     o << "Costo de Mueble: " <<m.getCosto() << "\n";
-    o << "Marca de Mueble: " <<m.getCosto() << "\n";
-    o << "Tienda: " <<m.getCosto() << "\n";
-    o << "Impuesto de Mueble: " <<m.getCosto() << "\n";
-    o << "Nombre de Mueble: " <<m.getCosto() << "\n";
+    o << "Marca de Mueble: " <<m.getMarca() << "\n";
+    o << "Tienda: " <<m.getTienda() << "\n";
+    o << "Impuesto de Mueble: " <<m.getImpuesto() << "\n";
+    o << "Nombre de Mueble: " <<m.getNombre() << "\n";
     return o;
 }
 CostoMueble::CostoMueble(){

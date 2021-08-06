@@ -44,6 +44,7 @@ Lista<T>::Lista(Nodo<T>* cabeza){
         tam+=1;
         nPtr = nPtr->getSiguiente();
     }
+    nPtr->setSiguiente(nPtr->getSiguiente());
 }
 template <typename T>
 int Lista<T>::getTam()const{

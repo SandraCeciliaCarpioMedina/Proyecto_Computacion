@@ -1,14 +1,15 @@
 #ifndef _SUELDO_H_
 #define _SUELDO_H_
 #include <iostream>
-class Sueldo{
+#include "Persona.h"
+class Sueldo : public Persona{
     private:
         float sueldo;
         std::string ocupacion;
         bool civil;
     public:
         Sueldo();
-        Sueldo(float,std::string,bool);
+        Sueldo(std::string,std::string,std::string,int,int,float,std::string,bool);
         void setSueldo(float);
         void setOcupacion(std::string);
         void setCivil(bool);
@@ -21,9 +22,26 @@ class Sueldo{
             civil = a.civil;
             return *this;
         }
+        friend std::ostream& operator<<(std::ostream &o, Sueldo &s);
         ~Sueldo();
 };
-Sueldo::Sueldo(){
+std::ostream& operator<<(std::ostream &o,const Sueldo &s){
+    bool civil = s.getCivil();
+    o << "Nombre: " << s.getNombre() << "\n";
+    o << "Apellido: " << s.getApellido() << "\n";
+    o << "Ocupacion: " << s.getOcupacion() << "\n";
+    o << "Edad: " << s.getEdad() << "\n";
+    o << "DNI: " << s.getDni() << "\n";
+    o << "Nacionalidad: " << s.getNacionalidad() << "\n";
+    if (civil == false){
+        o << "Civil: NO\n";
+    }else{
+        o << "Civil: SI\n";
+    }
+    o << "Sueldo: " << s.getSueldo() << "\n";
+    return o;
+}
+Sueldo::Sueldo() : Persona(){
     int opc;
     std::cout<<"Ingrese sueldo: "; std::cin>>sueldo;
     std::cout<<"Ingrese ocupacion: "; std::cin>>ocupacion;
@@ -35,7 +53,7 @@ Sueldo::Sueldo(){
         civil = true;
     }
 }
-Sueldo::Sueldo(float sueldo, std::string ocupacion, bool civil){
+Sueldo::Sueldo(std::string nacionalidad, std::string nombre, std::string apellido, int edad, int dni, float sueldo, std::string ocupacion, bool civil) : Persona(nacionalidad, nombre, apellido, edad, dni){
     this->sueldo = sueldo;
     this->ocupacion = ocupacion;
     this->civil = civil;

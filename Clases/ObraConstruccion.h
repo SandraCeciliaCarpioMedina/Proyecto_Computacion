@@ -57,10 +57,12 @@ class ObraConstruccion : protected Obra{
         void setListaMuebles(Lista<CostoMueble>);
         void setListaImplementos(Lista<CostoImplementos>);
         void setCostoPersonal(CostoPersonal);
+        float getImpuestoTotal();
         friend std::ostream& operator<<(std::ostream &o, const ObraConstruccion &c);
         ~ObraConstruccion();
 };
 std::ostream& operator<<(std::ostream &o, const ObraConstruccion &c){
+    o << "Nombre de Obra: " << c.getNombreObra() << "\n";
     o << "Maquinas Usadas:\n" << c.getListaMaquinas() << "\n";
     o << "Cemento:\n" << c.getCostoCemento() << "\n";
     o << "Fierro:\n" << c.getCostoFierro() << "\n";
@@ -76,19 +78,52 @@ std::ostream& operator<<(std::ostream &o, const ObraConstruccion &c){
     o << "Costo Total Generado:\n" << c.getCostoTotal() << "\n";
     return o;
 }
-ObraConstruccion::ObraConstruccion(){
+ObraConstruccion::ObraConstruccion() : Obra(){
     costoTotal = 0;
-    costoTotal += maquinas.getCabeza()->getElemento().getCosto();
+    CostoMaquina m(0," "," "," ");
+    CostoHerramientas h(0," "," "," ");
+    CostoMueble mu(0," "," "," ");
+    CostoImplementos i(0," "," "," ");
+    
+    Nodo<CostoMueble> *muPtr = new Nodo<CostoMueble>(&mu);
+    muPtr = muebles.getCabeza();
+    while(muPtr->getSiguiente() != nullptr){
+        costoTotal += muPtr->getElemento().getCosto();
+        muPtr = muPtr->getSiguiente();
+    }
+    costoTotal += muPtr->getElemento().getCosto();
+    
+    Nodo<CostoImplementos> *iPtr = new Nodo<CostoImplementos>(&i);
+    iPtr = implementos.getCabeza();
+    while(iPtr->getSiguiente() != nullptr){
+        costoTotal += iPtr->getElemento().getCosto();
+        iPtr = iPtr->getSiguiente();
+    }
+    costoTotal += iPtr->getElemento().getCosto();
+    
+    Nodo<CostoHerramientas> *hPtr = new Nodo<CostoHerramientas>(&h);
+    hPtr = herramientas.getCabeza();
+    while(hPtr->getSiguiente() != nullptr){
+        costoTotal += hPtr->getElemento().getCosto();
+        hPtr = hPtr->getSiguiente();
+    }
+    costoTotal += hPtr->getElemento().getCosto();
+    
+    Nodo<CostoMaquina>* mPtr = new Nodo<CostoMaquina>(&m);
+    mPtr = maquinas.getCabeza();
+    while(mPtr->getSiguiente() != nullptr){
+        costoTotal += mPtr->getElemento().getCosto();
+        mPtr = mPtr->getSiguiente();
+    }
+    costoTotal += mPtr->getElemento().getCosto();
+
     costoTotal += cemento.getCosto();
     costoTotal += fierros.getCosto();
     costoTotal += ladrillos.getCosto();
-    costoTotal += herramientas.getCabeza()->getElemento().getCosto();
     costoTotal += clavos.getCosto();
     costoTotal += tornillos.getCosto();
     costoTotal += ventanas.getCosto();
     costoTotal += puertas.getCosto();
-    costoTotal += muebles.getCabeza()->getElemento().getCosto();
-    costoTotal += implementos.getCabeza()->getElemento().getCosto();
     costoTotal += personal.getCosto();
 }
 void ObraConstruccion::setListaMaquinas(Lista<CostoMaquina> maquinas){
@@ -168,5 +203,49 @@ Lista<CostoMaquina> ObraConstruccion::getListaMaquinas()const{
 }
 ObraConstruccion::~ObraConstruccion(){
     std::cout<<"...Destruyendo ObraConstruccion...\n";
+}
+float ObraConstruccion::getImpuestoTotal(){
+    float impuesto = 0;
+    Lista<CostoMaquina> copiaMaquina = maquinas;
+    Lista<CostoMaquina> *ptrM = &copiaMaquina;
+    while(ptrM->getCabeza()->getSiguiente() != nullptr){
+        impuesto += ptrM->getCabeza()->getElemento().getImpuesto();
+        ptrM->getCabeza()->setSiguiente(ptrM->getCabeza()->getSiguiente());
+    }
+    impuesto += ptrM->getCabeza()->getElemento().getImpuesto();
+
+    impuesto += cemento.getImpuesto();
+    impuesto += fierros.getImpuesto();
+    impuesto += ladrillos.getImpuesto();
+    
+    Lista<CostoHerramientas> copiaHerramientas = herramientas;
+    Lista<CostoHerramientas> *ptrH = &copiaHerramientas;
+    while(ptrH->getCabeza()->getSiguiente() != nullptr){
+        impuesto += ptrH->getCabeza()->getElemento().getImpuesto();
+        ptrH->getCabeza()->setSiguiente(ptrH->getCabeza()->getSiguiente());
+    }
+    impuesto += ptrH->getCabeza()->getElemento().getImpuesto();
+
+    impuesto += clavos.getImpuesto();
+    impuesto += tornillos.getImpuesto();
+    impuesto += ventanas.getImpuesto();
+    impuesto += puertas.getImpuesto();
+
+    Lista<CostoMueble> copiaMuebles = muebles;
+    Lista<CostoMueble> *ptrMu = &copiaMuebles;
+    while(ptrMu->getCabeza()->getSiguiente() != nullptr){
+        impuesto += ptrMu->getCabeza()->getElemento().getImpuesto();
+        ptrMu->getCabeza()->setSiguiente(ptrMu->getCabeza()->getSiguiente());
+    }
+    impuesto += ptrMu->getCabeza()->getElemento().getImpuesto();
+
+    Lista<CostoImplementos> copiaImplementos = implementos;
+    Lista<CostoImplementos> *ptrI = &copiaImplementos;
+    while(ptrI->getCabeza()->getSiguiente() != nullptr){
+        impuesto += ptrI->getCabeza()->getElemento().getImpuesto();
+        ptrI->getCabeza()->setSiguiente(ptrI->getCabeza()->getSiguiente());
+    }
+    impuesto += ptrI->getCabeza()->getElemento().getImpuesto();
+    return impuesto;
 }
 #endif

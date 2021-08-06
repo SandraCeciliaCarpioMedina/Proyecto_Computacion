@@ -7,13 +7,18 @@ class Obra{
     public:
         Obra();
         Obra(std::string);
+        std::string getNombreObra()const;
         ~Obra();
 };
 Obra::Obra(){
-    nombre = "No definido";
+    std::cout<<"Nombre de Obra: ";
+    std::cin>>nombre;
 }
 Obra::Obra(std::string nombre){
     this->nombre = nombre;
+}
+std::string Obra::getNombreObra()const{
+    return nombre;
 }
 Obra::~Obra(){
     std::cout<<"...Destruyendo Obra...\n";
