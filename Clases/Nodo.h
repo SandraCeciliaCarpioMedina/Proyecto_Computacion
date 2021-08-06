@@ -44,6 +44,5 @@ void Nodo<T>::setSiguiente(Nodo<T>* siguiente){
 }
 template <typename T>
 Nodo<T>::~Nodo(){
-    std::cout<<"...Destruyendo Nodo...\n";
 }
 #endif

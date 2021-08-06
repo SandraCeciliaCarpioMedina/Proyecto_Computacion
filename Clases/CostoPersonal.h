@@ -51,6 +51,5 @@ float CostoPersonal::getCosto()const{
     return costo;
 }
 CostoPersonal::~CostoPersonal(){
-    std::cout<<"...Destruyendo CostoPersonal...\n";
 }
 #endif

@@ -77,6 +77,5 @@ std::string CostoMueble::getNombre()const{
     return nombre;
 }
 CostoMueble::~CostoMueble(){
-    std::cout<<"...Destruyendo CostoMueble...\n";
 }
 #endif

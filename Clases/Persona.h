@@ -68,6 +68,5 @@ void Persona::setDni(int dni){
     this->dni = dni;
 }
 Persona::~Persona(){
-    std::cout<<"...Destruyendo Persona...\n";
 }
 #endif

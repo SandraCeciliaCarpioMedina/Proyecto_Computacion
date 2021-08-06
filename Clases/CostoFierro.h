@@ -65,6 +65,5 @@ std::string CostoFierro::getTienda()const{
     return tienda;
 }
 CostoFierro::~CostoFierro(){
-    std::cout<<"...Destruyendo CostoFierro...\n";
 }
 #endif

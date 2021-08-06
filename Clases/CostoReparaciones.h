@@ -53,6 +53,5 @@ std::string CostoReparaciones::getNombre()const{
     return nombre;
 }
 CostoReparaciones::~CostoReparaciones(){
-    std::cout<<"...Destruyendo CostoReparaciones...\n";
 }
 #endif

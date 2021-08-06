@@ -77,6 +77,5 @@ std::string CostoHerramientas::getNombre()const{
     return nombre;
 }
 CostoHerramientas::~CostoHerramientas(){
-    std::cout<<"...Destruyendo CostoHerramientas...\n";
 }
 #endif

@@ -77,6 +77,5 @@ bool Sueldo::getCivil()const{
     return civil;
 }
 Sueldo::~Sueldo(){
-    std::cout<<"...Destruyendo Sueldo...\n";
 }
 #endif

@@ -21,6 +21,5 @@ std::string Obra::getNombreObra()const{
     return nombre;
 }
 Obra::~Obra(){
-    std::cout<<"...Destruyendo Obra...\n";
 }
 #endif

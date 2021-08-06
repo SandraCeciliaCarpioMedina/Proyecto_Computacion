@@ -53,6 +53,5 @@ std::string CostoClavos::getTienda()const{
     return tienda;
 }
 CostoClavos::~CostoClavos(){
-    std::cout<<"...Destruyendo CostoClavos...\n";
 }
 #endif

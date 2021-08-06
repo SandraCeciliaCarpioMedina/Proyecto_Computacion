@@ -32,6 +32,5 @@ void Factura::setPrecio(float precio){
     impuesto = 0.18*precio;
 }
 Factura::~Factura(){
-    std::cout<<"...Destruyendo Factura...\n";
 }
 #endif

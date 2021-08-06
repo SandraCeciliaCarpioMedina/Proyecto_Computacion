@@ -65,6 +65,5 @@ std::string CostoCemento::getTienda()const{
     return tienda;
 }
 CostoCemento::~CostoCemento(){
-    std::cout<<"...Destruyendo CostoCemento...\n";
 }
 #endif

@@ -77,6 +77,5 @@ std::string CostoImplementos::getNombre()const{
     return nombre;
 }
 CostoImplementos::~CostoImplementos(){
-    std::cout<<"...Destruyendo CostoImplementos...\n";
 }
 #endif

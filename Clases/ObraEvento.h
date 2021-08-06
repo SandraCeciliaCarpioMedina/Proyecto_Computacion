@@ -36,25 +36,29 @@ std::ostream& operator<<(std::ostream &o, const ObraEvento &e){
 }
 ObraEvento::ObraEvento() : Obra(){
     costoTotal=0;
-    CostoMueble mu(0," "," "," ");
-    CostoImplementos i(0," "," "," ");
+    CostoMueble *mu = new CostoMueble(0," "," "," ");
+    CostoImplementos *i = new CostoImplementos(0," "," "," ");
     
-    Nodo<CostoMueble> *muPtr = new Nodo<CostoMueble>(&mu);
+    Nodo<CostoMueble> *muPtr = new Nodo<CostoMueble>(mu);
     muPtr = muebles.getCabeza();
     while(muPtr->getSiguiente() != nullptr){
         costoTotal += muPtr->getElemento().getCosto();
-        muPtr = muPtr->getSiguiente();
+        muPtr->setSiguiente(muPtr->getSiguiente());
     }
     costoTotal += muPtr->getElemento().getCosto();
     
-    Nodo<CostoImplementos> *iPtr = new Nodo<CostoImplementos>(&i);
+    Nodo<CostoImplementos> *iPtr = new Nodo<CostoImplementos>(i);
     iPtr = implementos.getCabeza();
     while(iPtr->getSiguiente() != nullptr){
         costoTotal += iPtr->getElemento().getCosto();
-        iPtr = iPtr->getSiguiente();
+        iPtr->setSiguiente(iPtr->getSiguiente());
     }
     costoTotal += iPtr->getElemento().getCosto();
     costoTotal += personal.getCosto();
+    delete mu;
+    delete i;
+    delete muPtr;
+    delete iPtr;
 }
 float ObraEvento::getCostoTotal()const{
     return costoTotal;
@@ -79,24 +83,29 @@ void ObraEvento::setPersonal(CostoPersonal personal){
 }
 float ObraEvento::getImpuestoTotal(){
     float impuesto = 0;
-    Lista<CostoMueble> copiaM = muebles;
-    Lista<CostoMueble> *ptrM = &copiaM;
-    while(ptrM->getCabeza()->getSiguiente() != nullptr){
-        impuesto += ptrM->getCabeza()->getElemento().getImpuesto();
-        ptrM->getCabeza()->setSiguiente(ptrM->getCabeza()->getSiguiente());
+    CostoMueble *m = new CostoMueble(0," "," "," ");
+    Nodo<CostoMueble> *ptrM = new Nodo<CostoMueble>(m);
+    ptrM = muebles.getCabeza();
+    while(ptrM->getSiguiente() != nullptr){
+        impuesto += ptrM->getElemento().getImpuesto();
+        ptrM->setSiguiente(ptrM->getSiguiente());
     }
-    impuesto += ptrM->getCabeza()->getElemento().getImpuesto();
+    impuesto += ptrM->getElemento().getImpuesto();
 
-    Lista<CostoImplementos> copiaI = implementos;
-    Lista<CostoImplementos> *ptrI = &copiaI;
-    while(ptrI->getCabeza()->getSiguiente() != nullptr){
-        ptrI->getCabeza()->getElemento().getImpuesto();
-        ptrI->getCabeza()->setSiguiente(ptrI->getCabeza()->getSiguiente());
+    CostoImplementos *i = new CostoImplementos(0," "," "," ");
+    Nodo<CostoImplementos> *ptrI = new Nodo<CostoImplementos>(i);
+    ptrI = implementos.getCabeza();
+    while(ptrI->getSiguiente() != nullptr){
+        ptrI->getElemento().getImpuesto();
+        ptrI->setSiguiente(ptrI->getSiguiente());
     }
-    impuesto += ptrI->getCabeza()->getElemento().getImpuesto();
+    impuesto += ptrI->getElemento().getImpuesto();
+    delete m;
+    delete i;
+    delete ptrM;
+    delete ptrI;
     return impuesto;
 }
 ObraEvento::~ObraEvento(){
-    std::cout<<"...Destruyendo ObraEvento...\n";
 }
 #endif

@@ -78,18 +78,16 @@ void Lista<T>::insertar(){
     }
 }
 template <typename T>
-std::ostream& operator<<(std::ostream& o, const Lista<T>& l){
-    Nodo<T>* ptr=l.getCabeza();
+std::ostream& operator<<(std::ostream& o, const Lista<T> &l){
     o << "Mostrando elementos de la lista:\n";
-    while (ptr->getSiguiente() != nullptr){
-        o << ptr->getElemento() << "\n";
-        ptr = ptr->getSiguiente();
+    while (l.getCabeza()->getSiguiente() != nullptr){
+        o << l.getCabeza()->getElemento() << "\n";
+        l.getCabeza()->setSiguiente(l.getCabeza()->getSiguiente());
     }
-    o << ptr->getElemento() <<"\n";
+    o << l.getCabeza()->getElemento() <<"\n";
     return o;
 }
 template <typename T>
 Lista<T>::~Lista(){
-    std::cout<<"...Destruyendo Lista...\n";
 }
 #endif

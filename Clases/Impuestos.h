@@ -39,6 +39,5 @@ float Impuestos::getImpuestos()const{
     return impuestoTotal;
 }
 Impuestos::~Impuestos(){
-    std::cout<<"...Destruyendo Impuestos...\n";
 }
 #endif

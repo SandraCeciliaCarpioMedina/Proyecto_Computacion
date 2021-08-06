@@ -27,16 +27,18 @@ ObraReparacion::ObraReparacion(Lista<CostoReparaciones> reparaciones, CostoPerso
     this->personal = personal;
 }
 std::ostream& operator<<(std::ostream &o, const ObraReparacion &r){
-    o << "Reparaciones:\n" << r.getReparaciones() << "\n";
-    o << "Personal Contratado:\n" << r.getPersonal() << "\n";
-    o << "Costo Total de Reparacion: " << r.getCostoTotal() << "\n";
+    o << "Costo Total de Reparaciones: " << r.getCostoTotal() << "\n";
+    o << "Reparaciones:\n";
+    o << r.getReparaciones() << "\n";
+    o << "Personal Contratado:\n";
+    o << r.getPersonal() << "\n";
     return o;
 }
 ObraReparacion::ObraReparacion() : Obra(){
     costoTotal = 0;
-    CostoReparaciones r(0," ");
+    CostoReparaciones *r = new CostoReparaciones(0," ");
     
-    Nodo<CostoReparaciones> *rPtr = new Nodo<CostoReparaciones>(&r);
+    Nodo<CostoReparaciones> *rPtr = new Nodo<CostoReparaciones>(r);
     rPtr = reparaciones.getCabeza();
     while(rPtr->getSiguiente() != nullptr){
         costoTotal += rPtr->getElemento().getCosto();
@@ -45,6 +47,7 @@ ObraReparacion::ObraReparacion() : Obra(){
     costoTotal += rPtr->getElemento().getCosto();
     costoTotal += personal.getCosto();
     delete rPtr;
+    delete r;
 }
 float ObraReparacion::getCostoTotal()const{
     return costoTotal;
@@ -63,13 +66,16 @@ void ObraReparacion::setPersonal(CostoPersonal personal){
 }
 float ObraReparacion::getImpuestoTotal(){
     float impuestos = 0;
-    Lista<CostoReparaciones> copia = reparaciones;
-    Lista<CostoReparaciones> *ptr = &copia;
-    while(ptr->getCabeza()->getSiguiente() != nullptr){
-        impuestos += ptr->getCabeza()->getElemento().getImpuesto();
-        ptr->getCabeza()->setSiguiente(ptr->getCabeza()->getSiguiente());
+    CostoReparaciones *r = new CostoReparaciones(0," ");
+    Nodo<CostoReparaciones> *ptr = new Nodo<CostoReparaciones>(r);
+    ptr = reparaciones.getCabeza();
+    while(ptr->getSiguiente() != nullptr){
+        impuestos += ptr->getElemento().getImpuesto();
+        ptr->setSiguiente(ptr->getSiguiente());
     }
-    impuestos += ptr->getCabeza()->getElemento().getImpuesto();
+    impuestos += ptr->getElemento().getImpuesto();
+    delete r;
+    delete ptr;
     return impuestos;
 }
 ObraReparacion::~ObraReparacion(){
