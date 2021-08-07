@@ -18,6 +18,7 @@ int main(){
     impE = c.getImpuestoTotal();
     cout<<"Gestionando Impuestos:\n";
     Impuestos impuestos(std::move(impE),std::move(impR),std::move(impC));
+    system("cls");
     cout << impuestos << endl;
     impR = impuestos.getImpuestos();
     impC = a.getCostoTotal() + b.getCostoTotal() + c.getCostoTotal();

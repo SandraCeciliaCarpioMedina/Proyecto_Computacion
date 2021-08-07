@@ -24,7 +24,7 @@ std::ostream& operator<<(std::ostream &o, const Impuestos &i){
 Impuestos::Impuestos(float &&impuestoEventos,float &&impuestoReparaciones,float &&impuestoConstrucciones){
     impuestoTotal = 0;
 
-    Factura *f = new Factura(0);
+    Factura *f = new Factura();
     Nodo<Factura> *ptrF = new Nodo<Factura>(std::move(f));
     ptrF = facturas.getCabeza();
     while(ptrF->getSiguiente() != nullptr){
